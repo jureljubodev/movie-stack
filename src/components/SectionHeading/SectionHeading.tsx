@@ -1,4 +1,5 @@
 import React from "react";
+import { SectionHeadingCSS } from "./SectionHeadingStyles";
 
 interface ISectionHeadingProps {
   text: string;
@@ -7,9 +8,9 @@ interface ISectionHeadingProps {
 
 const SectionHeading: React.FC<ISectionHeadingProps> = (props): JSX.Element => {
   return (
-    <h1 className="ml-16 text-white text-4xl mt-8 font-bold">
+    <SectionHeadingCSS>
       {props.text} {props.icon}
-    </h1>
+    </SectionHeadingCSS>
   );
 };
 

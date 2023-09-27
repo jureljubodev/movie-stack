@@ -1,28 +1,52 @@
 import MovieCard from "../MovieCard/MovieCard";
-import { useGlobalState } from "../../context/movieContext";
+import DotLoader from "react-spinners/DotLoader";
+import { CSSProperties, useState } from "react";
+import { HorizontalContainerWrapper } from "./HorizontalContainerStyles";
+import { yellowColor } from "../../pages/MovieSearch/MovieSearchStyles";
 
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
-const HorizontalContainer = () => {
-  const { state } = useGlobalState();
-  if (Array.isArray(state)) {
+interface IHorizontalContainerProps {
+  data: any;
+}
+
+const HorizontalContainer: React.FC<IHorizontalContainerProps> = (
+  props
+): JSX.Element => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  if (props.data?.results?.length > 0) {
+    setTimeout(() => setIsLoading(!isLoading), 500);
     return (
-      <div className="flex flex-nowrap overflow-x-auto snap-x snap-mandatory text-white ml-8 py-4 gap-5 scroll-smooth">
-        {state.map((movie) => {
+      <HorizontalContainerWrapper>
+        {props.data.results.map((movie: any) => {
           return (
             <MovieCard
               key={movie.id}
               id={movie.id}
-              originalTitle={movie.original_title}
+              originalTitle={movie.title}
               overview={movie.overview}
               posterPath={movie.poster_path}
               releaseDate={movie.release_date}
             />
           );
         })}
-      </div>
+      </HorizontalContainerWrapper>
     );
   } else {
-    return (<h1 className="text-white">Loading</h1>)
+    return (
+      <DotLoader
+        color={yellowColor}
+        loading={isLoading}
+        cssOverride={override}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    );
   }
 };
 

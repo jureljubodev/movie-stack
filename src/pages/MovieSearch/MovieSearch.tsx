@@ -1,44 +1,63 @@
-import axios from "axios";
-import { API_KEY } from "../../services/api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, CSSProperties } from "react";
 import MovieCard from "../../components/MovieCard/MovieCard";
+import { useSelector } from "react-redux";
+import { useGetMoviesMutation } from "../../services/movieApi";
+import ClipLoader from "react-spinners/ClipLoader";
+import { MovieSearchWrapper, yellowColor } from "./MovieSearchStyles";
+
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 const MovieSearch = () => {
-  let SEARCH_PROMPT = localStorage.getItem("searchParam");
-  let fetchBySearchURL = `https://api.themoviedb.org/3/search/movie?query=${SEARCH_PROMPT}&api_key=99c68bc92809ad2563b22c1a9262cad9&language=en-US`;
-  const [searchArray, setSearchArray] = useState([]);
-
-  const getMoviesBySearch = async (url: string) => {
-    await axios({
-      url: url,
-      params: {
-        api_key: API_KEY,
-      },
-    }).then((response) => {
-      setSearchArray(response.data.results);
-    });
-  };
+  const searchQuery = useSelector((state: any) => state.searcher.searchQuery);
+  const [query, setQuery] = useState("");
+  const [getMovies, { data, isLoading }] = useGetMoviesMutation();
 
   useEffect(() => {
-    getMoviesBySearch(fetchBySearchURL);
-  }, [searchArray]);
+    setQuery(searchQuery);
+    fetchMovie();
+  }, [searchQuery, query]);
 
-  return (
-    <div className="min-w-screen w-screen min-h-screen h-full bg-[#060D17] text-white flex flex-wrap px-16">
-      {searchArray.map((movie: any) => {
-        return (
-          <MovieCard
-            key={movie.id}
-            id={movie.id}
-            originalTitle={movie.original_title}
-            overview={movie.overview}
-            posterPath={movie.poster_path}
-            releaseDate={movie.release_date}
-          />
-        );
-      })}
-    </div>
-  );
+  const fetchMovie = async () => {
+    await getMovies({ query });
+  };
+
+  if (document.readyState !== "complete") {
+    return (
+      <ClipLoader
+        color={yellowColor}
+        loading={isLoading}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    );
+  } else {
+    if (data?.results?.length > 0) {
+      return (
+        <>
+          <MovieSearchWrapper>
+            {data.results.map((movie: any) => {
+              return (
+                <MovieCard
+                  key={movie.id}
+                  id={movie.id}
+                  originalTitle={movie.original_title}
+                  overview={movie.overview}
+                  posterPath={movie.poster_path}
+                  releaseDate={movie.release_date}
+                />
+              );
+            })}
+          </MovieSearchWrapper>
+        </>
+      );
+    }
+  }
 };
 
 export default MovieSearch;

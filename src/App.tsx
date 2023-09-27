@@ -1,18 +1,33 @@
 import { Link } from "react-router-dom";
+import MovieSearchDropDown from "./components/MovieSearchDropDown/MovieSearchDropDown.tsx";
+import { useGetMoviesMutation } from "./services/movieApi.ts";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { HomeWrapper, HomeHeading, HomeButton } from "./styles/HomeStyles.ts";
 
 function App() {
+  const searchQuery = useSelector((state: any) => state.searcher.searchQuery);
+
+  const [query, setQuery] = useState("");
+  const [getMovies, { data }] = useGetMoviesMutation();
+
+  useEffect(() => {
+    setQuery(searchQuery);
+    fetchMovie();
+  }, [searchQuery, query]);
+
+  const fetchMovie = async () => {
+    await getMovies({ query });
+  };
   return (
     <>
-      <div className="flex flex-col items-center justify-center max-w-screen h-screen bg-[#060D17]">
-        <h1 className="text-[#C69B00] sm:text-6xl text-4xl text-center	 font-bold uppercase w-3/5">
-          Your Ultimate Movie Streaming Destination
-        </h1>
+      <HomeWrapper>
+        <MovieSearchDropDown data={data} />
+        <HomeHeading>Your Ultimate Movie Streaming Destination</HomeHeading>
         <Link to="/Discover">
-          <button className="fill-btn py-4 px-32 rounded-md mt-8 bg-[#10161D] border-2 border-transparent text-white hover:text-[#C69B00] hover:bg-transparent hover:border-2 hover:border-[#C69B00] ease-in-out duration-300">
-            Discover
-          </button>
+          <HomeButton>Discover</HomeButton>
         </Link>
-      </div>
+      </HomeWrapper>
     </>
   );
 }

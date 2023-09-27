@@ -1,16 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-
   *,
   *::after,
   *::before {
     @apply box-border;
     @apply font-poppins;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  input {
+    outline:none;
+    border: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+
+  html {
+    background-color: #060d17;
+  }
+
+  .back-arrow {
+    width: 100%;
+  }
+
+  .router-link {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+
+  .search-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #10161d;
+    color: #7b7e82;
+  }
+
+  .expand-arrow {
+    align-self: center;
+    width: 4rem;
+    height: 4rem;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .fill-star {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+  }
+
+  .outline-star {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
   }
 }
 
@@ -26,11 +85,11 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #10161D;
+  background: #10161d;
   border-radius: 16px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #C69B00;
+  background: #c69b00;
 }

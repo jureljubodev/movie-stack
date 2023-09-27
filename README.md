@@ -1,27 +1,26 @@
 # React + TypeScript + Vite
+# MOVIE STACK APP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+I used Vite to set up React + Typescript + Vite app with SWC (Speed Web Compiler) for better performance.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+How to run?
 
-## Expanding the ESLint configuration
+If your reading this, you probably managed to un-zip the file I sent... After that cd into movie-stack
+folder in your terminal and run 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+"npm run dev"
 
-- Configure the top-level `parserOptions` property like this:
+Server should be running on http://localhost:5173/
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+PS: 
+
+If you managed to figure out the error that is stopping me from displaying "Favorite" section, let me know, I've
+been trying to solve it for a whole day and still haven't figured it out...
+
+I've had about 2 days to make this, I know styling and design can be improved on, as well as the rest of the code,
+but still, I want to be on time, so I'm sending this to you, hoping you see the potential...
+
+Thank you once again for the opportunity!
+

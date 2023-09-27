@@ -7,11 +7,18 @@ import "./styles/index.css";
 import Navbar from "./components/Navbar/Navbar.tsx";
 import MovieDetails from "./pages/MovieDetails/MovieDetails.tsx";
 import MovieSearch from "./pages/MovieSearch/MovieSearch.tsx";
-import { GlobalStateProvider } from "./context/movieContext.tsx";
+import {store} from './app/store.ts';
+import { Provider } from "react-redux";
+
+if(localStorage.getItem("favoriteMovies") === null) {
+  localStorage.setItem("favoriteMovies", "")
+} else {
+  console.log("Local storage loaded.")
+}
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <GlobalStateProvider>
+      <Provider store={store} >
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -21,6 +28,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path={"/:movieId"} element={<MovieDetails />} />
         </Routes>
       </BrowserRouter>
-    </GlobalStateProvider>
+      </Provider>
   </React.StrictMode>
 );

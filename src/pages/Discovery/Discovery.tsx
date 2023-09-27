@@ -1,82 +1,63 @@
-import { useEffect } from "react";
 import HorizontalContainer from "../../components/HorizontalContainer/HorizontalContainer";
 import FavouriteDropDown from "../../components/FavouriteDropDown/FavouriteDropDown";
 import SectionHeading from "../../components/SectionHeading/SectionHeading";
-import { requests } from "../../services/api";
-import { useGlobalState } from "../../context/movieContext";
-import axios from "axios";
-import { API_KEY } from "../../services/api";
-import HorizontalContainerHorror from "../../components/HorizontalContainerHorror/HorizontalContainerHorror";
-import HorizontalContainerAction from "../../components/HorizontalContainerAction/HorizontalContainerAction";
-import HorizontalContainerComedy from "../../components/HorizontalContainerComedy/HorizontalContainerComedy";
+import {
+  useGetHorrorMoviesMutation,
+  useGetActionMoviesMutation,
+  useGetComedyMoviesMutation,
+  useGetTrendingMoviesMutation,
+  useGetMoviesMutation,
+} from "../../services/movieApi";
+import MovieSearchDropDown from "../../components/MovieSearchDropDown/MovieSearchDropDown";
+import { useSelector} from "react-redux";
+import { useState, useEffect } from "react";
+import { DiscoveryWrapper } from "./DiscoveryStyles";
 
 const Discovery = () => {
-  const { setState } = useGlobalState();
-  const { setStateHorror } = useGlobalState();
-  const { setStateAction } = useGlobalState();
-  const { setStateComedy } = useGlobalState();
+  const [getMovies, { data: searchData }] = useGetMoviesMutation();
+  const [getHorrorMovies, { data: horrorData }] = useGetHorrorMoviesMutation();
+  const [getActionMovies, { data: actionData }] = useGetActionMoviesMutation();
+  const [getComedyMovies, { data: comedyData }] = useGetComedyMoviesMutation();
+  const [getTrendingMovies, { data: trendingData }] =
+    useGetTrendingMoviesMutation();
+  const emptyQuery = "";
+  const [query, setQuery] = useState("");
 
-  const getTrendingMovies = async (url: string) => {
-    await axios({
-      url: url,
-      params: {
-        api_key: API_KEY,
-      },
-    }).then((response) => {
-      setState(response.data.results);
-    });
-  };
-  const getHorrorMovies = async (url: string) => {
-    await axios({
-      url: url,
-      params: {
-        api_key: API_KEY,
-      },
-    }).then((response) => {
-      setStateHorror(response.data.results);
-    });
-  };
-  const getActionMovies = async (url: string) => {
-    await axios({
-      url: url,
-      params: {
-        api_key: API_KEY,
-      },
-    }).then((response) => {
-      setStateAction(response.data.results);
-    });
-  };
-  const getComedyMovies = async (url: string) => {
-    await axios({
-      url: url,
-      params: {
-        api_key: API_KEY,
-      },
-    }).then((response) => {
-      setStateComedy(response.data.results);
-    });
+  const searchQuery = useSelector((state: any) => state.searcher.searchQuery);
+  const fetchMovieSearch = async () => {
+    await getMovies({ query });
   };
 
   useEffect(() => {
-    getTrendingMovies(requests.fetchTrending);
-    getHorrorMovies(requests.fetchHorrorMovies);
-    getActionMovies(requests.fetchActionMovies);
-    getComedyMovies(requests.fetchComedyMovies);
-  }, []);
+    fetchMovie();
+  }, [emptyQuery]);
+
+  useEffect(() => {
+    setQuery(searchQuery);
+    fetchMovieSearch();
+  }, [searchQuery]);
+
+  const fetchMovie = async () => {
+    await getHorrorMovies(emptyQuery);
+    await getActionMovies(emptyQuery);
+    await getComedyMovies(emptyQuery);
+    await getTrendingMovies(emptyQuery);
+  };
 
   return (
-    <div className="max-w-screen bg-[#060D17] max-w-screen h-full overflow-x-hidden overscroll-none">
+    <DiscoveryWrapper>
+      <MovieSearchDropDown data={searchData} />
       <SectionHeading text="Newest" icon="🆕" />
-      <HorizontalContainer />
+      <HorizontalContainer data={trendingData} />
       <SectionHeading text="Popular Horrors" icon="🎉" />
-      <HorizontalContainerHorror />
+      <HorizontalContainer data={horrorData} />
       <SectionHeading text="Popular Action" icon="🎉" />
-      <HorizontalContainerAction />
+      <HorizontalContainer data={actionData} />
       <SectionHeading text="Popular Comedy" icon="🎉" />
-      <HorizontalContainerComedy />
+      <HorizontalContainer data={comedyData} />
       <SectionHeading text="Favorites" icon="💙" />
       <FavouriteDropDown />
-    </div>
+    </DiscoveryWrapper>
   );
 };
 
