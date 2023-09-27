@@ -1,7 +1,5 @@
 import MovieCard from "../MovieCard/MovieCard";
 import { useGlobalState } from "../../context/movieContext";
-import { GlobalStateInterface } from "../../context/movieContext";
-
 
 const HorizontalContainerAction = () => {
   const { stateAction } = useGlobalState();
@@ -23,7 +21,7 @@ const HorizontalContainerAction = () => {
       </div>
     );
   } else {
-    return (<h1>Loading</h1>)
+    return <h1>Loading</h1>;
   }
 };
 

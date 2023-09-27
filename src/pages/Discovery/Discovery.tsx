@@ -15,10 +15,6 @@ const Discovery = () => {
   const { setStateHorror } = useGlobalState();
   const { setStateAction } = useGlobalState();
   const { setStateComedy } = useGlobalState();
-  const { state } = useGlobalState();
-  const { stateHorror } = useGlobalState();
-  const { stateAction } = useGlobalState();
-  const { stateComedy } = useGlobalState();
 
   const getTrendingMovies = async (url: string) => {
     await axios({

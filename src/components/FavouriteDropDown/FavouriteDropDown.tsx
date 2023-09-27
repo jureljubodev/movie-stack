@@ -6,7 +6,6 @@ import { API_KEY } from "../../services/api";
 
 const FavouriteDropDown = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   var idArray: String[] | undefined = localStorage?.getItem("favorites")?.split(",");
   const [mainArr, setMainArr] = useState<IMovieCardProps[]>([]);
 

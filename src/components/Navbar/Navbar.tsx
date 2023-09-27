@@ -2,7 +2,6 @@ import { AiOutlineSearch } from "react-icons/ai";
 import logo from "../../assets/movie-stack_logo.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [searchPrompt, setSearchPrompt] = useState("");
@@ -25,7 +24,10 @@ const Navbar = () => {
       </ul>
       <div className="flex justify-start items-center py-2 px-4 rounded bg-[#10161D]  grow-[2]">
         <Link to="/movie-search">
-          <AiOutlineSearch className="bg-[#10161D] text-[#7B7E82] h-6 w-6 cursor-pointer" onClick={localStorage.setItem('searchParam', searchPrompt)} />
+          <AiOutlineSearch
+            className="bg-[#10161D] text-[#7B7E82] h-6 w-6 cursor-pointer"
+            onClick={localStorage.setItem("searchParam", searchPrompt)}
+          />
         </Link>
         <input
           placeholder="Search..."

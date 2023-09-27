@@ -5,7 +5,10 @@
 @tailwind utilities;
 
 @layer base {
-  *,*::after,*::before {
+
+  *,
+  *::after,
+  *::before {
     @apply box-border;
     @apply font-poppins;
   }
