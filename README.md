@@ -1,26 +1,45 @@
-# React + TypeScript + Vite
-# MOVIE STACK APP
+# Movie Stack App
 
 
 I used Vite to set up React + Typescript + Vite app with SWC (Speed Web Compiler) for better performance.
 
-How to run?
+## How to run?
 
-If your reading this, you probably managed to un-zip the file I sent... After that cd into movie-stack
-folder in your terminal and run 
+Navigate into movie-stack folder:
 
-"npm run dev"
+    cd movie-stack
+      
+Install dependencies:
+
+    npm install
+
+Run the development server:
+
+    npm run dev
 
 Server should be running on http://localhost:5173/
 
+## Live deploy
+Deploy using Netlify: 
+https://651459abd9668b0ec841480a--dashing-kitsune-e7cc0e.netlify.app/
 
-PS: 
+# Changes:
 
-If you managed to figure out the error that is stopping me from displaying "Favorite" section, let me know, I've
-been trying to solve it for a whole day and still haven't figured it out...
+1. Used styled-components for styling and design
+2. _HorizontalContainerGENRE_ for specific genres simplified into singular _HorizontalContainer_ component
+3. Used RTK Query and Redux to fetch data from API and store searchQuery into store
+4. Fixed "Favorites" functionality with local storage
+5. Added DropDown component when searching for movies
+6. Fixed empty posters error
+7. Added favorite button to MovieCard component (the little star next to movie poster)
+8. Added .env variables into the project for safely storing private data
 
-I've had about 2 days to make this, I know styling and design can be improved on, as well as the rest of the code,
-but still, I want to be on time, so I'm sending this to you, hoping you see the potential...
+### Other minor changes were made
 
-Thank you once again for the opportunity!
+## PS
 
+Hopefully this has shown you my ability to adjust and learn new concepts quickly, I'm looking forward to your reply.
+
+Kind regards,
+
+Jure Ljubicic
