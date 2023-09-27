@@ -5,4 +5,5 @@ export const DiscoveryWrapper = styled.div`
   overscroll-behavior: none;
   height: 100%;
   background: #060d17;
+  position: relative;
 `;

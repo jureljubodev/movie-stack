@@ -4,6 +4,8 @@ import FavouriteInner from "../FavouriteInner/FavouriteInner";
 import {
   ArrowSectionWrapper,
   FavouriteDropDownWrapper,
+  HiddenContainer,
+  ShownContainer,
 } from "./FavouriteDropDownStyles";
 
 const FavouriteDropDown = () => {
@@ -23,20 +25,14 @@ const FavouriteDropDown = () => {
           />
         ) : (
           <MdExpandMore
-            className="h-16 w-16 text-white cursor-pointer self-center"
+            className="expand-arrow"
             onClick={() => {
               setIsExpanded(!isExpanded);
             }}
           />
         )}
       </ArrowSectionWrapper>
-      <div
-        className={
-          isExpanded
-            ? "w-full h-fit max-h-screen bg-transparent text-white mt-6 w-screen"
-            : "hidden"
-        }
-      >
+      <div className={isExpanded ? "shown-container" : "hidden-container"}>
         <FavouriteInner data={arrayAsArray} />
       </div>
     </FavouriteDropDownWrapper>

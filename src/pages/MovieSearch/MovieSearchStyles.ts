@@ -10,6 +10,7 @@ export const MovieSearchWrapper = styled.div`
   min-height: 100vh;
   color: #ffffff;
   background: #060d17;
+  margin-top: 2rem;
 `;
 
 export const yellowColor = "#C69B00";

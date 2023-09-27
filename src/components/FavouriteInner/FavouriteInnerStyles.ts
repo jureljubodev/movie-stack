@@ -12,4 +12,5 @@ export const FavouriteInnerWrapper = styled.div`
   scroll-behavior: smooth;
   scroll-snap-type: x var(--tw-scroll-snap-strictness);
   --tw-scroll-snap-strictness: mandatory;
+  flex-wrap: wrap;
 `;

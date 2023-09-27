@@ -26,7 +26,8 @@ type MovieDetails = {
 const MovieDetails = () => {
   const navigate = useNavigate();
   const [currMovie, setCurrMovie] = useState<MovieDetails>({});
-  const idHolder = window.location.href.replace("http://localhost:5173/", "");
+  const parts = window.location.href.split('/');
+  const idHolder = parts.slice(-1).toString()
   const [alreadyFav, setAlreadyFav] = useState(false);
   let arrayAsStrings = localStorage.getItem("favoriteMovies");
 

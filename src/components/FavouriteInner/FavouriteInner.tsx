@@ -26,7 +26,6 @@ const FavouriteInner: React.FC<IFavouriteInnerProps> = (props): JSX.Element => {
           api_key: basicUrlSnips.apiKey,
         },
       }).then((response) => {
-        console.log(response.data);
         if (
           arrayOfDataObj.some((element) => {
             if (element.id === response.data.id) {
@@ -37,11 +36,9 @@ const FavouriteInner: React.FC<IFavouriteInnerProps> = (props): JSX.Element => {
           console.log("Already in array.");
         } else {
           arrayOfDataObj.push(response.data);
-          console.log(arrayOfDataObj);
         }
       });
     });
-    // setTrueState(true);
   };
 
   const synchFunc = () => {
@@ -53,14 +50,6 @@ const FavouriteInner: React.FC<IFavouriteInnerProps> = (props): JSX.Element => {
       synchFunc();
     }
   }, []);
-
-  // useEffect(() => {
-  //   if (arrayOfDataObj.length > 0) {
-  //     setTrueState(true);
-  //   } else {
-  //     setTrueState(false);
-  //   }
-  // }, [arrayOfDataObj.length]);
 
   return (
     <FavouriteInnerWrapper>

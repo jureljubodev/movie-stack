@@ -4,7 +4,7 @@ export const MovieSearchDropDownUl = styled.ul`
   display: flex;
   position: absolute;
   top: 0;
-  margin-top: 5rem;
+  margin-top: 1rem;
   z-index: 10;
   flex-direction: column;
   width: 100%;

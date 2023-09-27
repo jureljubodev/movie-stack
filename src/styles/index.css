@@ -14,20 +14,19 @@
     margin: 0;
     box-sizing: border-box;
   }
-  
+
   ul {
     list-style-type: none;
   }
-  
+
   input {
-    outline:none;
+    outline: none;
     border: none;
   }
-  
+
   a {
     text-decoration: none;
   }
-  
 
   html {
     background-color: #060d17;
@@ -43,6 +42,18 @@
     @media (min-width: 768px) {
       display: block;
     }
+  }
+
+  .hidden-container {
+    display: none;
+  }
+
+  .shown-container {
+    margin-top: 1.5rem;
+    height: fit-content;
+    max-height: 100vh;
+    color: #ffffff;
+    background-color: transparent;
   }
 
   .search-icon {
